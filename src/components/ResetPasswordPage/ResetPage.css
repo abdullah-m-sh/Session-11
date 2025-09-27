@@ -1,0 +1,54 @@
+.ResetPasswordPage {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  padding: 40px;
+  max-width: 400px;
+  margin: 80px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+.reset-password{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.reset-password input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #2c2c2c;
+  color: white;
+  font-size: 16px;
+}
+
+.reset-password input::placeholder {
+  color: #aaa;
+}
+
+.reset-password button {
+  width: 100%;
+  padding: 12px;
+  background-color: #04aa6d;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reset-password button:hover {
+  background-color: #028a5e;
+}
+
+.ResetPasswordPage .button {
+  background-color: transparent;
+  color: #aaa;
+  transition: 0.3s;
+}
+.ResetPasswordPage .button:hover{
+  color: white;
+}

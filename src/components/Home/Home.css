@@ -1,0 +1,45 @@
+.home {
+  background-color: #121212; /* خلفية داكنة */
+  color: #f0f0f0; /* نص فاتح */
+  padding: 60px 32px;
+  font-family: "Segoe UI", sans-serif;
+  min-height: calc(100vh - 70.8px);
+  display: flex;
+  flex-direction: column;
+    justify-content: center;
+  text-align: center;
+}
+
+/* العنوان الرئيسي */
+.home h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #04aa6d;
+}
+
+/* الفقرة التعريفية */
+.home p {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 10px auto;
+}
+
+/* زر CTA */
+.home .cta-button {
+  width: fit-content;
+  margin: auto;
+  margin-top: 30px;
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home .cta-button:hover {
+  background-color: #028a5e;
+}
