@@ -6,6 +6,7 @@ import LogIn from "./components/Log-in/Log-in";
 import SignUp from "./components/Sign-up/Sign-up";
 import Profile from "./components/Profile/Profile";
 import ResetPasswordPage from "./components/ResetPasswordPage/ResetPage";
+import EditTask from "./components/edit-task/edit-task";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/edit-task" element={<EditTask />} />
         <Route path="/resetpassword" element={<ResetPasswordPage />} />
       </Routes>
     </>

@@ -1,23 +1,28 @@
 .home {
-  background-color: #121212; /* خلفية داكنة */
-  color: #f0f0f0; /* نص فاتح */
+  background-color: #121212;
+  color: #f0f0f0;
   padding: 60px 32px;
   font-family: "Segoe UI", sans-serif;
   min-height: calc(100vh - 70.8px);
   display: flex;
   flex-direction: column;
-    justify-content: center;
+  justify-content: center;
   text-align: center;
 }
+.home .content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
 
-/* العنوان الرئيسي */
 .home h2 {
   font-size: 36px;
   margin-bottom: 20px;
   color: #04aa6d;
 }
 
-/* الفقرة التعريفية */
 .home p {
   font-size: 18px;
   line-height: 1.6;
@@ -25,10 +30,7 @@
   margin: 10px auto;
 }
 
-/* زر CTA */
 .home .cta-button {
-  width: fit-content;
-  margin: auto;
   margin-top: 30px;
   background-color: #04aa6d;
   color: white;
@@ -42,4 +44,222 @@
 
 .home .cta-button:hover {
   background-color: #028a5e;
+}
+
+.home .parent-of-btns button {
+  color: white;
+  background-color: #4876c4;
+  font-size: 16px;
+  border: none;
+  border-radius: 3px;
+  margin-right: 15px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.home .parent-of-btns button:hover {
+  background-color: #365f9c;
+}
+.home .parent-of-btns select {
+  color: white;
+  background-color: #4876c4;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* .home .all-task {
+  justify-content: center;
+  flex-wrap: wrap;
+} */
+.home .all-task .one-task {
+  border: 2px solid antiquewhite;
+  margin: 40px 20px;
+  width: 300px;
+  height: 180px;
+  transition: 0.2s;
+}
+.home .all-task .one-task:hover {
+  border-left: 8px solid antiquewhite;
+}
+.home .all-task .one-task h2 {
+  font-size: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.home .all-task .one-task li {
+  list-style-position: inside;
+  list-style-type: circle;
+  font-size: 15px;
+  line-height: 30px;
+  text-align: start;
+  margin: 0 15px;
+}
+.home .all-task .one-task .time {
+  font-size: 10px;
+  text-align: right;
+  margin-right: 8px;
+}
+
+.home .add-task-btn button {
+  color: white;
+  background-color: teal;
+  font-size: 16px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  align-self: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.home .add-task-btn .fa-plus {
+  font-size: 13px;
+}
+.overlay-color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  z-index: -1;
+  transition: 1s;
+}
+.show-box-model {
+  opacity: 1;
+  z-index: 0;
+}
+.box-model {
+  background: whitesmoke;
+  width: 400px;
+  height: 330px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: 1s;
+
+  transform: translateX(-50%);
+}
+.show-box-model .box-model {
+  scale: 1;
+  transform: translate(-50%, -50%);
+}
+.close {
+  font-size: 28px;
+  color: #111;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.5s;
+}
+.close:hover {
+  color: teal;
+  font-size: 35;
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+/*
+.check-email {
+  color: #111;
+  font-size: 16px;
+  margin-top: 25px;
+}
+
+.forget-pass {
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.forget-pass:hover {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+*/
+.task-modal * {
+  box-sizing: border-box;
+}
+
+.task-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.task-modal-inner {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.task-modal-inner input {
+  width: 100%;
+  height: 36px;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1;
+  margin: 0;
+}
+
+.details-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.details-row input {
+  flex: 1 1 auto;
+  height: 36px;
+}
+
+.details-row .add-btn {
+  width: auto !important;
+  flex: 0 0 auto !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 36px;
+  padding: 0 12px;
+  font-size: 14px;
+  line-height: 1;
+  margin: 0;
+
+  background: teal;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.submit-btn {
+  padding: 8px 20px;
+  background: teal;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  line-height: 1;
+  width: auto;
 }

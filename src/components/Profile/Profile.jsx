@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
+import { deleteUser } from "firebase/auth";
 
 const Profile = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -30,7 +31,7 @@ const Profile = () => {
         </p>
         <p>
           user name:
-          <span>{user.displayName}</span>
+          <span style={{textTransform:"capitalize"}}>{user.displayName}</span>
         </p>
         <p>
           Last Sign in:
@@ -58,7 +59,25 @@ const Profile = () => {
           >
             Logout
           </button>
-          <button className="button delete">delete</button>
+          <button
+            className="button delete"
+            onClick={() => {
+              const user = auth.currentUser;
+
+              deleteUser(user)
+                .then(() => {
+                  // User deleted.
+                  navigate("/");
+
+                })
+                .catch((error) => {
+                  // An error ocurred
+                  // ...
+                });
+            }}
+          >
+            delete
+          </button>
         </div>
       </div>
     </div>
