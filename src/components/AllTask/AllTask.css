@@ -1,0 +1,34 @@
+
+.home .all-task {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.home .all-task .one-task {
+  border: 2px solid antiquewhite;
+  margin: 40px 20px;
+  width: 300px;
+  height: 180px;
+  transition: 0.2s;
+}
+.home .all-task .one-task:hover {
+  border-left: 8px solid antiquewhite;
+}
+.home .all-task .one-task h2 {
+  font-size: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.home .all-task .one-task li {
+  list-style-position: inside;
+  list-style-type: circle;
+  font-size: 15px;
+  line-height: 30px;
+  text-align: start;
+  margin: 0 15px;
+}
+.home .all-task .one-task .time {
+  font-size: 10px;
+  text-align: right;
+  margin-right: 8px;
+}

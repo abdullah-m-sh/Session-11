@@ -68,39 +68,6 @@
   cursor: pointer;
 }
 
-/* .home .all-task {
-  justify-content: center;
-  flex-wrap: wrap;
-} */
-.home .all-task .one-task {
-  border: 2px solid antiquewhite;
-  margin: 40px 20px;
-  width: 300px;
-  height: 180px;
-  transition: 0.2s;
-}
-.home .all-task .one-task:hover {
-  border-left: 8px solid antiquewhite;
-}
-.home .all-task .one-task h2 {
-  font-size: 25px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.home .all-task .one-task li {
-  list-style-position: inside;
-  list-style-type: circle;
-  font-size: 15px;
-  line-height: 30px;
-  text-align: start;
-  margin: 0 15px;
-}
-.home .all-task .one-task .time {
-  font-size: 10px;
-  text-align: right;
-  margin-right: 8px;
-}
-
 .home .add-task-btn button {
   color: white;
   background-color: teal;
@@ -155,9 +122,11 @@
 .close {
   font-size: 28px;
   color: #111;
+  flex: end;
   position: absolute;
   top: 10px;
   right: 20px;
+  float: left;
   cursor: pointer;
   font-weight: 700;
   transition: 0.5s;
@@ -188,15 +157,18 @@
   transition: 0.3s;
 }
 */
-.task-modal * {
-  box-sizing: border-box;
-}
-
 .task-modal {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  overflow-y: scroll;
+}
+.task-modal * {
+  box-sizing: border-box;
 }
 
 .task-modal-inner {
@@ -261,5 +233,59 @@
   font-weight: 500;
   cursor: pointer;
   line-height: 1;
-  width: auto;
+  width: 100px;
+  margin: auto;
+  transition: 0.3s;
+}
+.submit-btn:hover {
+  scale: 1.1;
+}
+
+.list li {
+  margin-left: 20px;
+  text-align: start;
+  color: black;
+
+  list-style-position: inside;
+  list-style-type: circle;
+}
+.my-spinner {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  border: 3px solid white;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.save-massage {
+  padding: 20px 30px;
+  background-color: whitesmoke;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 5px;
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  opacity: 0;
+  transition: 1s;
+}
+.save-massage .active {
+  opacity: 1 !important;
+}
+.save-massage svg {
+  padding: 3px;
+  color: whitesmoke;
+  background-color: teal;
+  border-radius: 50%;
 }

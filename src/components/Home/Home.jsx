@@ -2,18 +2,61 @@ import { Helmet } from "react-helmet-async";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase/confige";
+import { auth, db } from "../../firebase/confige";
 import { FaPlus } from "react-icons/fa6";
 import { useState } from "react";
 import Model from "../Model/Model";
 
+import { doc, setDoc } from "firebase/firestore";
+import { MdDone } from "react-icons/md";
+import HomeModel from "../HomeModel/HomeModel";
+import AllTask from "../AllTask/AllTask";
+
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
 
-  const [showModel, setShowModel] = useState("");
+  const [showModel, setShowModel] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
+  const [SaveMassage, setSaveMassage] = useState(false);
+  const [array, setArray] = useState(["html", "css"]);
+  const [modelInput, setModelInput] = useState({
+    title: "",
+    details: "",
+  });
 
   const closeModel = () => {
-    setShowModel("");
+    setShowModel(false);
+  };
+  const titleInput = (e) => {
+    setModelInput({ ...modelInput, title: e.target.value });
+  };
+  const detailsInput = (e) => {
+    setModelInput({ ...modelInput, details: e.target.value });
+  };
+  const addToArray = () => {
+    if (!array.includes(modelInput.details)) {
+      setArray([...array, modelInput.details]);
+    }
+    setModelInput({ ...modelInput, details: "" });
+  };
+  const submitBtn = async (e) => {
+    e.preventDefault();
+    console.log("wait");
+    setShowLoading(true);
+    let taskId = new Date().getTime();
+    await setDoc(doc(db, user.uid, `${taskId}`), {
+      title: modelInput.title,
+      details: array,
+      id: taskId,
+    });
+    console.log("done");
+    setArray([]);
+    setShowLoading(false);
+    setShowModel(false);
+    setSaveMassage(true);
+    setTimeout(() => {
+      setSaveMassage(false);
+    }, 3000);
   };
 
   // ======== On Loading ========
@@ -84,22 +127,12 @@ const Home = () => {
             </select>
           </section>
           {/* Show all task */}
-          <section className="all-task flex mtt">
-            <article dir="auto" className="one-task">
-              <Link to="/edit-task">
-                <h2>New Task</h2>
-                <ul>
-                  <li>Sub Task</li>
-                  <li>Sub Task</li>
-                </ul>
-                <p className="time">a day ago</p>
-              </Link>
-            </article>
-          </section>
+          <AllTask user={user} />
           {/* Add new task */}
           <section className="mt add-task-btn">
             <button
               onClick={() => {
+                // @ts-ignore
                 setShowModel("show-box-model");
               }}
             >
@@ -108,28 +141,21 @@ const Home = () => {
           </section>
         </div>
         {showModel && (
-          <Model closeModel={closeModel}>
-            <div className="task-modal">
-              <div className="task-modal-inner">
-                <input placeholder="Add title :" type="text" />
-
-                <div className="details-row flex">
-                  <input placeholder="details:" type="text" />
-                  <button
-                    onClick={(eo) => {
-                      eo.preventDefault();
-                    }}
-                    className="add-btn"
-                  >
-                    add
-                  </button>
-                </div>
-
-                <button>Submit</button>
-              </div>
-            </div>
-          </Model>
+          <HomeModel
+            closeModel={closeModel}
+            modelInput={modelInput}
+            titleInput={titleInput}
+            detailsInput={detailsInput}
+            addToArray={addToArray}
+            array={array}
+            submitBtn={submitBtn}
+            showLoading={showLoading}
+          />
         )}
+
+        <p className={`save-massage ${SaveMassage ? "active" : ""} `}>
+          Task added successfully <MdDone />
+        </p>
       </div>
     );
   }

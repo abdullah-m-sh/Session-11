@@ -1,70 +1,60 @@
 import React from "react";
 import "./edit-task.css";
 import { Helmet } from "react-helmet-async";
-import { FaRegEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import { auth } from "../../firebase/confige";
+import { useAuthState } from "react-firebase-hooks/auth";
+import EditTaskTitleSection from "../../components/edit-task-titleSection/edit-task-titleSection";
+import EditTaskSubTasks from "../../components/edit-task-SubTasks/edit-task-SubTasks";
+import EditTaskBTNS from "../../components/edit-task-BTNS/edit-task-BTNS";
+import { useParams } from "react-router-dom";
 
 const EditTask = () => {
-  return (
-    <div>
-      <Helmet>
-        <title>edit task page</title>
-      </Helmet>
+  const [user, loading, error] = useAuthState(auth);
+  let { stringId } = useParams();
 
-      <div className="edit-task">
-        {/* Title */}
-        <section className="title center">
-          <h1>
-            <input
-              value={"Malak abu sharar"}
-              className="title-input center"
-              type="text"
-            />
-            <FaRegEdit />
-          </h1>
-        </section>
-
-        {/* Sub-tasks section */}
-        <section className="sub-task mtt">
-          <div className="parent-time">
-            <p className="time">Created: 6 days ago</p>
-            <div>
-              <input id="checkbox" type="checkbox" />
-              <label htmlFor="checkbox">Completed </label>
-            </div>
-          </div>
-
-          <ul>
-            <li className="card-task flex">
-              <p> Sub taskk </p>
-              <span className="fa-trash">
-                <MdDelete />
-              </span>
-            </li>
-
-            <li className="card-task flex">
-              <p> Sub taskk </p>
-              <span className="fa-trash">
-                <MdDelete />
-              </span>
-            </li>
-          </ul>
-        </section>
-
-        {/* Add-more BTN && Delete BTN */}
-
-        <section className="center btns mtt">
-          <button className="add-more-btn">
-            Add more <i className="fa-solid fa-plus"></i>
-          </button>
-
-          <div>
-            <button className="delete mtt">Delete task</button>
-          </div>
-        </section>
+  // ======== On Loading ========
+  if (loading) {
+    return (
+      <div className="home">
+        <div className="content">
+          <h1>Loading...</h1>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  // ======== On Error ========
+  if (error) {
+    return (
+      <div className="home">
+        <div className="content">
+          <h1>Error: {error.message}</h1>
+        </div>
+      </div>
+    );
+  }
+
+  // ======== On user ========
+  if (user) {
+    return (
+      <div>
+        <Helmet>
+          <title>edit task page</title>
+        </Helmet>
+
+        <div className="edit-task">
+          {/* Title */}
+          <EditTaskTitleSection user={user} stringId={stringId} />
+
+          {/* Sub-tasks section */}
+          <EditTaskSubTasks user={user} stringId={stringId} />
+
+          {/* Add-more BTN && Delete BTN */}
+          <EditTaskBTNS user={user} stringId={stringId} />
+        </div>
+      </div>
+    );
+  }
 };
 
 export default EditTask;

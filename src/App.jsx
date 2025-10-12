@@ -17,7 +17,7 @@ function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-task" element={<EditTask />} />
+        <Route path="/edit-task/:id" element={<EditTask />} />
         <Route path="/resetpassword" element={<ResetPasswordPage />} />
       </Routes>
     </>
